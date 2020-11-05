@@ -1,16 +1,34 @@
 import java.util.Random;
 public class Characters extends Main {
+    public static String name;
     public static String enemy;
     public static String attackWeapon;
-    public static int attackDamage;
-    public static int life;
+    final int attackDamage;
+    final public int life;
 
-    public void setCharacter(String enemy, String weapon, int attackDamage, int life) {
+    //public Characters(int life) {
+      //  this.life = life;
+    //}
+
+
+    public Characters(String enemy, String weapon, int attackDamage, int life) {
         this.enemy = enemyRandom(enemy);
-        this.attackWeapon = enemy/*enemyWeapon( weapon )*/;
+        this.attackWeapon = enemyWeapon( weapon );
         this.attackDamage = attackDamage;
         this.life=life;
     }
+
+
+
+    /*
+    public void setCharacter(String type, String weapon, int attackDamage, int life) {
+        this.enemy = enemyRandom(enemy);
+        this.attackWeapon = enemyWeapon( weapon );
+        this.attackDamage = attackDamage;
+        this.life=life;
+    }
+
+     */
 
     /*
     Random random = new Random();

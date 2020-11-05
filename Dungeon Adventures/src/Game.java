@@ -1,63 +1,80 @@
+import java.util.Random;
 import  java.util.Scanner;
 
-public class Game  {
+public class Game {
     static Scanner in = new Scanner( System.in );
 
+    //CLASS ENEMY
+    public static int Damage(int damage) {
+        if (Characters.enemies.equals( "Barbarian" ))
+            return Characters.barbarianAttack;
+        else if (Characters.enemies.equals( "Sorcerer" ))
+            return Characters.sorcererAttack;
+        return 0;
+    }
 
-    public static void game() {
 
-        Characters hero = new Characters("Hero", "axe", 10, 200 );
+    static public void game() {
+        Characters hero = new Characters(Characters.heroAttack,Characters.heroLife);
+        Characters barbarian = new Characters(Characters.barbarianAttack,Characters.enemyLife);
+        Characters sorcerer= new Characters(Characters.sorcererAttack,Characters.enemyLife);
 
-        Characters barbarian = new Characters("Barbarian", "axe", 15, 20 );
-
-        Characters sorcerer = new Characters("Sorcerer", "lightning", 10, 20 );
-
-        System.out.println(hero.life);
-        System.out.println(barbarian.life);
         //boolean playing = true;
 
         //while (playing){
-/*
         System.out.println( "-------------------------" );
-        System.out.println( "A " + enemy + " is approaching..." );
-        System.out.println( "The " + enemy + " is " + attackWeapon );
-        //hero.life = 200;
-
-        while (hero.life > 0) {
-
-            System.out.println( "you have lost " + barbarian.attackDamage + " life points" );
-            System.out.println( "You have now " + (hero.life-=sorcerer.attackDamage) + " life points left" );
+        System.out.println( "A " + Characters.enemies + " is approaching..." );
+        weapon(" ");
 
 
-            while (enemy.equals( enemy ) && enemyRandom( enemy ).life > 0) {
-               // if (enemy =="barbarian")
-                 //   barbarian.life=20;
-                System.out.println( enemy + " has " + life + " life points" );
-
-break;
-                //enemy attack
+        while (Characters.heroLife > 0) {
+            System.out.println();
+            System.out.println( "you have lost " + Damage( 0 ) + " life points" );
+            System.out.println( "You have now " + (Characters.heroLife -= Damage( 0 )) + " life points left" );
 
 
+            while (Characters.enemyLife > 0) {
+                System.out.println( Characters.enemies + " has " + Characters.enemyLife + " life points" );
 
+                System.out.println("-----------------------------");
                 //HERO ATTACK
-                if (enemy== "Barbarian")
-                    System.out.println("Type Sword to fight back");
-                else if (enemy== "Sorcerer")
-                    System.out.println("Type Water_Flask to fight back");
+                if (Characters.enemies.equals( "Barbarian" ) )
+                    System.out.println( "Type Sword to fight back" );
+                else if (Characters.enemies.equals( "Sorcerer" ) )
+                    System.out.println( "Type Water_Flask to fight back" );
 
                 String input = in.nextLine();
-                if (enemy=="Barbarian" && input.equals( "Sword" )) {
-                  barbarian.life= life - 10;
-                    System.out.println(barbarian.life);
-                }
-                else if (enemy=="Sorcerer" && input.equals( "Water_Flask" ));{
-                    System.out.println( "The " + enemy + " has " + (sorcerer.life -= 10) + " life points" );
-                    if (sorcerer.life == 0)
-                        System.out.println("Congratulation!!! you have successfully killed the " + enemy);
-                }
 
+                if (Characters.enemies == "Barbarian" && input.equals( "Sword" )) {
+                    System.out.println( "The " + Characters.enemies + " has " + (Characters.enemyLife -= Characters.heroAttack) + " life points" );
+                   // if (barbarian.life <= 0)
+                     //   System.out.println( "Congratulation!!! you have successfully killed the " + Characters.enemy );
+                } else if (Characters.enemies == "Sorcerer" && input.equals( "Water_Flask" )) ;
+                {
+                    System.out.println( "The " + Characters.enemies+ " has " + (Characters.enemyLife -= Characters.heroAttack) + " life points" );
 
-            }*/
+                } if (Characters.enemyLife <= 0)
+                    System.out.println( "Congratulation!!! you have successfully killed the " + Characters.enemies );
+                System.out.println("---------------");
+                break;
             }
+        }
+        }
 
+            public static String weapon (String weapon){
+                if (Characters.enemies.equals( "Barbarian" )) {
+                    Random random = new Random();
+                    int choice = random.nextInt( 100 );
+                    System.out.println( Characters.enemies + " is hitting you with an axe" );
+                    if (choice <= 30)
+                        System.out.println( "...Critical hit!!! you have been damage twice" );
+                } else if (Characters.enemies.equals( "Sorcerer" )) {
+                    Random random = new Random();
+                    int choice = random.nextInt( 100 );
+                    System.out.println( Characters.enemies + " launching a strike of a lightning" );
+                    if (choice <= 10)
+                        System.out.println( "...you have been paralyze" );
+                }
+                return " ";
+            }
         }

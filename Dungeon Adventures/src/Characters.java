@@ -1,67 +1,79 @@
 import java.util.Random;
-public class Characters extends Main {
-    public static String name;
-    public static String enemy;
+public class Characters extends Game{
+    public static int life;
+    public static int attackDamage;
     public static String attackWeapon;
-    final int attackDamage;
-    final public int life;
+    public static int heroLife=200;
+    public static int enemyLife=20;
+    public static int sorcererAttack=10;
+    public static int barbarianAttack=15;
+    public static int heroAttack=10;
+    public static boolean paralyze;
+    public static boolean criticalHit;
 
-    //public Characters(int life) {
-      //  this.life = life;
-    //}
 
-
-    public Characters(String enemy, String weapon, int attackDamage, int life) {
-        this.enemy = enemyRandom(enemy);
-        this.attackWeapon = enemyWeapon( weapon );
+    public Characters( int attackDamage, int life) {
         this.attackDamage = attackDamage;
         this.life=life;
     }
 
 
 
-    /*
-    public void setCharacter(String type, String weapon, int attackDamage, int life) {
-        this.enemy = enemyRandom(enemy);
-        this.attackWeapon = enemyWeapon( weapon );
-        this.attackDamage = attackDamage;
-        this.life=life;
-    }
+    static String enemies= enemy( " " );
 
-     */
 
-    /*
-    Random random = new Random();
-    void sorcerer(){
-        String paralyze = "...you have been paralyze";
-        String [] lightning= {" launching a strike of a lightning"," launching a strike of a lightning"," launching a strike of a lightning"," launching a strike of a lightning"," launching a strike of a lightning"};
-        String [] weapon={paralyze, String.valueOf( lightning )};
-        String sorcererWeapon= weapon[random.nextInt( weapon.length )];
-    }*/
 
-    public String enemyWeapon(String weapon) {
+    public static String enemy(String enemy) {
+        String[] enemies = {"Barbarian", "Sorcerer"};
         Random random = new Random();
-        if (enemyRandom( "Barbarian" ).equals( "Barbarian" ) ){
-            String[] weapons = {"hitting you with an axe", "hitting you with an axe"+"\n...Critical hit!!! you have been damage twice"};
-            int i = random.nextInt( weapons.length );
-            return weapons[i];
-        } else if( enemyRandom( "Sorcerer" ).equals( "Sorcerer" )){
-            String paralyze="...you have been paralyze";
-            String[] weapons = {" launching a strike of a lightning", "launching a strike of a lightning" +
-                    "\n"+ paralyze +"\nYou lose 1 turn"};
-            int i = random.nextInt( weapons.length );
-            return weapons[i];
-        }
-        return enemyWeapon( weapon );
-    }
-
-    public static String enemyRandom (String enemy){
-        String [] enemies= {"Barbarian","Sorcerer"};
-        Random random = new Random();
-        int i = random.nextInt(enemies.length);
+        int i = random.nextInt( enemies.length );
         return enemies[i];
     }
 
 
 
+        /*
+        String[] enemies = {"Barbarian", "Sorcerer"};
+        Random random = new Random();
+        int i = random.nextInt( enemies.length );
+        return enemies[i];
+
+
+    }
+    public static String barbarianWeapon() {
+        Random random = new Random();
+        int choice = random.nextInt( 100 );
+        System.out.println( "hitting you with an axe" );
+        if (choice <= 30)
+            return "...Critical hit!!! you have been damage twice";
+        return " ";
+    }
+
+
+    public static String sorcererWeapon() {
+        Random random = new Random();
+        int choice = random.nextInt( 100 );
+        System.out.println( "launching a strike of a lightning" );
+        if (choice <= 10)
+            return "...you have been paralyze";
+        return " ";
+    }
+    /*
+    public static String enemyWeapon(String weapon) {
+        if (enemy.equals( "Barbarian" ))
+            return barbarianWeapon();
+        else if (enemy.equals( "Sorcerer" ))
+            return sorcererWeapon();
+        return  " ";
+    }
+
+     */
 }
+/*
+    public Characters(String enemy, String weapon, int attackDamage, int life) {
+        this.enemy = enemyRandom( enemy );
+        this.attackWeapon = enemyWeapon( weapon );
+        this.attackDamage = attackDamage;
+        this.life = life;
+    }
+*/

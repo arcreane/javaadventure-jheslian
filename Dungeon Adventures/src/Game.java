@@ -12,7 +12,8 @@ public class Game{
     static int numberOfRooms=5;
     static boolean playing = true;
 
-    static public void game() {
+    static public void startGame() {
+
         //instantiation of the hero character
         Characters hero = new Characters( Characters.heroAttack, Characters.heroLife );
 
@@ -20,15 +21,16 @@ public class Game{
         System.out.println( "Welcome to the Coding Dungeon" );
         System.out.println( "You are now entering....." );
 
-        while (playing){
+        while (playing ){
 
-            while ( 0<numberOfRooms ) {
+            while ( 0<numberOfRooms || hero.heroLife <= 0 ) {
 
                 Characters.enemiesLife=20; // for the enemies to refresh their lives and thanks to Nicolas i figured the god damn error
-                System.out.println( "You have arrive on 1 of the rooms of the Dungeon" );
+                System.out.println( "You have arrived on 1 of the rooms of the Dungeon" );
                 System.out.println( "A " + Characters.enemies + " is approaching..." );
 
                 //prints life's of the characters
+
                 while (Characters.enemiesLife > 0 ) {
                     System.out.println();
                     Weapon.weapon( " " );
@@ -38,7 +40,7 @@ public class Game{
                     //kills the enemy till they're doooooomed lol
                     while (Characters.enemiesLife > 0) {
 
-                        System.out.println( "-----------------------------" );
+                        System.out.println( "<<<---------------------------------------------------------->>>" );
                         //HERO ATTACK
                         if (Characters.enemies.equals( "Barbarian" ))
                             System.out.println( "Type Sword to fight back" );
@@ -55,16 +57,24 @@ public class Game{
                             System.out.println( "The " + Characters.enemies + " has " + (Characters.enemiesLife -= Characters.heroAttack) + " life points" );
                             Characters.enemyIsKilled();
                             break;
-                        }
+                        }else if(input.equals( "" ) && hero.heroLife <= 0) {
+                            Characters.gameOver();
+
+                        }else
+                            break;
+
                     }
                 }
                 playing=false;
                 numberOfRooms--;
+                // victory once hero killed all the enemies
+                if(numberOfRooms <= 0 ) {
+                    System.out.println();
+                    System.out.println( "You have found a treasure full of lotto's result from the future" );
+                    System.out.println();
+                    System.out.println( "<<<---------------------------------------------------------->>>" );
+                }
             }
         }
-
     }
-
 }
-
-// TO BE CONTINUED

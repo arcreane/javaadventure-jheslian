@@ -6,7 +6,7 @@
 
 
 import java.util.Random;
-public class Characters  {
+public class Characters extends Game{
     //attributes for the characters
     public static int life;
     public static int attackDamage;
@@ -16,7 +16,7 @@ public class Characters  {
     public static int barbarianAttack = 15;
     public static int heroAttack = 10;
     public static boolean paralyze;
-    public static boolean criticalHit;
+    //public static boolean criticalHit;
 
     //construct a character for hero , barbarian and sorcerer
     public Characters(int attackDamage, int life) {
@@ -28,16 +28,24 @@ public class Characters  {
     public static void enemyIsKilled() {
         if (Characters.enemiesLife <= 0) {
             System.out.println( "Congratulation!!! you have successfully killed the " + Characters.enemies );
-            System.out.println( "---------------" );
+            System.out.println( "<<<---------------------------------------------------------->>>" );
         }
     }
 
     //generates a random enemy
-    static String enemies = enemy( " " );
-    public static String enemy(String enemy) {
+    static String enemies = newEnemy();
+    public static String newEnemy() {
         String[] enemies = {"Barbarian", "Sorcerer"};
         Random random = new Random();
         int i = random.nextInt( enemies.length );
-        return enemies[i];
+        String enemy=enemies[i];
+        return enemy;
     }
-}
+    // game over once hero died
+    public static void gameOver() {
+            System.out.println( "You have been killed!!! \nYour lovely enemies have won!!!" );
+            playing = false;
+            System.out.println();
+        }
+    }
+

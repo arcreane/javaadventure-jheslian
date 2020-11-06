@@ -1,8 +1,6 @@
 import java.util.Random;
-import java.util.Scanner;
 
 public class Weapon  {
-    static Scanner in = new Scanner( System.in );
 
     //instantiation of the enemies
     static Characters barbarian = new Characters( Characters.barbarianAttack, Characters.enemiesLife );
@@ -24,14 +22,15 @@ public class Weapon  {
             Random random = new Random();
             int choice = random.nextInt( 100 );
             System.out.println( Characters.enemies + " launch a strike of a lightning" );
-            //make the paralyze effect chance to 10% but it effects doesn't work yet
+            //make the paralyze effect chance to 10% , once in effect hero lose his turn to attack
             if (choice <= 10) {
                 System.out.println( "...you have been paralyze" );
-                System.out.println("You lose 1 turn");
-                ///PROBLEM WITH PASSING THE TURN when paralyze
+                System.out.println("You lose your turn to attack");
+                weapon(" ");
+                Characters.heroLife -= damage( 0 );
             }
         }
-        return " ";
+            return " ";
     }
 
     //damage attack for the enemies

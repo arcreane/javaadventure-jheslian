@@ -14,8 +14,6 @@ public class Game{
 
     static public void startGame() {
 
-        //instantiation of the hero character
-        Characters hero = new Characters( Characters.heroAttack, Characters.heroLife );
 
         //beginning of the game
         System.out.println( "Welcome to the Coding Dungeon" );
@@ -23,7 +21,7 @@ public class Game{
 
         while (playing ){
 
-            while ( 0<numberOfRooms || hero.heroLife <= 0 ) {
+            while ( 0<numberOfRooms || Characters.hero.heroLife <= 0 ) {
 
                 Characters.enemiesLife=20; // for the enemies to refresh their lives and thanks to Nicolas i figured the god damn error
                 System.out.println( "You have arrived on 1 of the rooms of the Dungeon" );
@@ -34,7 +32,7 @@ public class Game{
                 while (Characters.enemiesLife > 0 ) {
                     System.out.println();
                     Weapon.weapon( " " );
-                    System.out.println( "You have now " + (hero.heroLife -= Weapon.damage( 0 )) + " life points left" );
+                    System.out.println( "You have now " + (Characters.heroLife -= Weapon.damage( 0 )) + " life points left" );
                     System.out.println( Characters.enemies + " has " + Characters.enemiesLife + " life points" );
 
                     //kills the enemy till they're doooooomed lol
@@ -50,14 +48,14 @@ public class Game{
                         String input = in.nextLine();
 
                         if (Characters.enemies == "Barbarian" && input.equals( "Sword" )) {
-                            System.out.println( "The " + Characters.enemies + " has now " + (Characters.enemiesLife -= Characters.heroAttack) + " life points" );
+                            Events.heroAttack();
                             Characters.enemyIsKilled();
                             break;
                         } else if (Characters.enemies == "Sorcerer" && input.equals( "Water_Flask" )) {
                             System.out.println( "The " + Characters.enemies + " has " + (Characters.enemiesLife -= Characters.heroAttack) + " life points" );
                             Characters.enemyIsKilled();
                             break;
-                        }else if(input.equals( "" ) && hero.heroLife <= 0) {
+                        }else if(input.equals( "" ) && Characters.heroLife <= 0) {
                             Characters.gameOver();
 
                         }else

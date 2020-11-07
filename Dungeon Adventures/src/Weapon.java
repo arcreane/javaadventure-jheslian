@@ -3,8 +3,9 @@ import java.util.Random;
 public class Weapon  {
 
     //instantiation of the enemies
-    static Characters barbarian = new Characters( Characters.barbarianAttack, Characters.enemiesLife );
-    static Characters sorcerer = new Characters( Characters.sorcererAttack, Characters.enemiesLife );
+
+
+
 
     //random weapon for my beloved enemies
     public static String weapon(String weapon){
@@ -36,9 +37,9 @@ public class Weapon  {
     //damage attack for the enemies
     public static int damage(int damage) {
         if (Characters.enemies.equals( "Barbarian" ))
-            return barbarian.barbarianAttack;
+            return Characters.barbarian.barbarianAttack;
         else if (Characters.enemies.equals( "Sorcerer" ))
-            return sorcerer.sorcererAttack;
+            return Characters.sorcerer.sorcererAttack;
         return 0;
     }
 }

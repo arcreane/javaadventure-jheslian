@@ -15,14 +15,23 @@ public class Characters extends Game{
     public static int sorcererAttack = 10;
     public static int barbarianAttack = 15;
     public static int heroAttack = 10;
-    public static boolean paralyze;
-    //public static boolean criticalHit;
+    public static String weapon;
+    public static String heroWeapon="sword";
+
+
 
     //construct a character for hero , barbarian and sorcerer
-    public Characters(int attackDamage, int life) {
+    public Characters(int attackDamage, int life, String weapon) {
         this.attackDamage = attackDamage;
         this.life = life;
+        this.weapon = weapon;
+
     }
+
+    //instantiation of the hero character
+    static Characters hero = new Characters( heroAttack, heroLife, heroWeapon );
+    static Characters barbarian = new Characters( barbarianAttack, enemiesLife, "axe" );
+    static Characters sorcerer = new Characters( sorcererAttack, enemiesLife, "strike of a lightning" );
 
     //prints once enemy's life is 0 or less
     public static void enemyIsKilled() {
@@ -48,4 +57,3 @@ public class Characters extends Game{
             System.out.println();
         }
     }
-

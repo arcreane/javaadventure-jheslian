@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -26,7 +27,7 @@ public class Main {
                 default:
                     System.out.println( "You didn't enter the right option" );
             }
-        }catch (ArithmeticException e) {
+        }catch (InputMismatchException e) {
             System.out.println("Only numerical numbers are available");
         }
     }
